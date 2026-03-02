@@ -5,7 +5,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://i.imgur.com/QRlCrO3.png">
   <source media="(prefers-color-scheme: light)" srcset="https://i.imgur.com/QRlCrO3.png">
-  <img alt="ReadmeAI Logo" src="https://i.imgur.com/QRlCrO3.png" width="60%">
+  <img alt="KellerSS Logo" src="https://i.imgur.com/QRlCrO3.png" width="60%">
 </picture>
 
 </p>
@@ -14,154 +14,126 @@
   <em>Pensado e realizado em prol da comunidade de FreeFire, por KellerSS.</em>
 </p>
 
-
-
 </div>
 
 <img src="https://i.imgur.com/NnWf7Fm.png" alt="line break" width="100%" height="3px">
 
+## IntroduÃ§Ã£o
 
-## Introdução
-
-KellerSS é um scanner para dispositivos Android que tem o objetivo de reunir logs e arquivos suspeitos em questão de segundos de utilização.
+KellerSS Ã© um scanner para dispositivos **iOS** que tem o objetivo de analisar o relatÃ³rio de privacidade do iPhone e identificar conexÃµes suspeitas de proxy e cheat em questÃ£o de segundos.
 
 **Por que usar o KellerSS?**
 
-O projeto tem como principal função facilitar o trabalho dos analistas em suas telagens, que contem várias funções, como:
+O projeto tem como principal funÃ§Ã£o facilitar o trabalho dos analistas em suas triagens, com diversas funÃ§Ãµes automatizadas:
 
-* **🔵 Automação:** O scanner faz todo o trabalho pesado por você, poupando seu tempo.
-* **⚫️ Logs suspeitas:** Reune log's de todos possíves bypass para você automaticamente.
-* **🟣 Facilidade:** O scanner roda utilizando `Termux`, e com alguns simples comandos você já vai estar rodando ele sem problemas.
+* **ðŸ”µ AutomaÃ§Ã£o:** O scanner faz todo o trabalho pesado por vocÃª, poupando seu tempo.
+* **âš«ï¸ DetecÃ§Ã£o de Proxy:** Identifica IPs de VPS, Hosting e Proxy usados por cheaters.
+* **ðŸŸ£ Facilidade:** Roda diretamente no iPhone usando o app **Scriptable**, sem necessidade de computador.
 
+<img src="https://i.imgur.com/NnWf7Fm.png" alt="line break" width="100%" height="3px">
 
 ## Como utilizar?
 
+#### <img width="2%" src="https://simpleicons.org/icons/apple.svg">&emsp13; Passo 1 â€” Instale o Scriptable:
 
+| Aplicativo | DescriÃ§Ã£o |
+|---|---|
+| [Scriptable](https://apps.apple.com/br/app/scriptable/id1405459188) | App gratuito para automaÃ§Ã£o iOS com JavaScript |
 
-#### <img width="2%" src="https://simpleicons.org/icons/diagramsdotnet.svg">&emsp13; Faça o download do Termux:
+#### <img width="2%" src="https://simpleicons.org/icons/apple.svg">&emsp13; Passo 2 â€” Exporte o RelatÃ³rio de Privacidade do iPhone:
 
+VÃ¡ em **Ajustes â†’ Privacidade e SeguranÃ§a â†’ RelatÃ³rio de Privacidade de Apps â†’ Exportar RelatÃ³rio de Privacidade de Apps**
 
-| Aplicativo                  | Descrição                |
-|----------------------------|---------------------------|
-| [Termux](https://cdn.discordapp.com/attachments/1348094420620279849/1353232408635248720/Termux_ALLIANCE.apk?ex=67eacaa4&is=67e97924&hm=d782777ad6e4d9b90eb62a19fb94b98efb4c4630a7a9383510884daf02cc7ab7&) | Terminal utilizado para rodar o scanner   |
-| [Tutorial](https://www.youtube.com/watch?v=RF7O1MHThsE&t=8s) | Tutorial ensinando a como utilizar   |
+O arquivo serÃ¡ salvo no formato `App_Privacy_Report_v4_YYYY-MM-DD...` no iCloud Drive.
 
+#### <img width="2%" src="https://simpleicons.org/icons/gnometerminal.svg">&emsp13; Passo 3 â€” Instale o scanner no Scriptable:
 
+Abra o Scriptable, crie um novo script, cole o cÃ³digo abaixo e salve:
 
+```js
+const KELLERSS_IOS = "https://raw.githubusercontent.com/kellerzz/KellerSS-iOS/refs/heads/main/KellerSS-iOS.js"
 
+let req = new Request(KELLERSS_IOS)
+let code = await req.loadString()
 
-#### <img width="2%" src="https://simpleicons.org/icons/gnometerminal.svg">&emsp13; Rode utilizando o Termux:
-
-#### <img width="2%" src="https://simpleicons.org/icons/termius.svg">&emsp13; Após abrir o Termux, dividindo a tela com o pareamento wifi aberto, rode os comandos abaixo:
-
-```sh
- adb pair localhost:porta codigopareamento
-
+if (!code || code.startsWith("404")) {
+  let a = new Alert()
+  a.title = "Erro"
+  a.message = "Nao foi possivel baixar o script."
+  a.addAction("OK")
+  await a.present()
+} else {
+  eval(code)
+}
 ```
 
-#### <img width="2%" src="https://simpleicons.org/icons/termius.svg">&emsp13; Após parear, a porta irá atualizar, então suba nas opções e confira a nova porta.
+#### <img width="2%" src="https://simpleicons.org/icons/gnometerminal.svg">&emsp13; Passo 4 â€” Execute:
 
-```sh
- adb connect localhost:portaatualizada
-
-```
-
-#### <img width="2%" src="https://simpleicons.org/icons/termius.svg">&emsp13; Após parear e conectar corretamente, só rodar o código que irá baixar e executar o scanner.
-
-```sh
- pkg install git php android-tools -y && rm -rf KellerSS-Android && git clone https://github.com/kellerzz/KellerSS-Android && cd KellerSS-Android && php KellerSS.php
-
-```
-
+Toque no script para rodar. O app irÃ¡ abrir o seletor de arquivos â€” selecione o `App_Privacy_Report` exportado. A anÃ¡lise inicia automaticamente.
 
 <img src="https://i.imgur.com/NnWf7Fm.png" alt="line break" width="100%" height="3px">
 
+## DetecÃ§Ãµes
 
-## Detecções
-
-
-
-| Detecções               | Descrição                                   |
-|----------------------|-----------------------------------------------|
-| `Verificação da instalação do FreeFire`            | Verificar se o jogo está instalado                      | `center`        |
-| `Reinicialização do dispositivo`              | Verifica se o dispositivo foi reiniciado a menos de 60 minutos                      |  
-| `Versão Android`      | Verifica a versão do Android                |
-| `Root`      | Verifica se o dispositivo possui Root                      |
-| `Data e Hora`     | Verifica bypass de Data e Hora                       |
-| `Passagem de Replay` | Verifica se o usuário passou Replay                      | 
-| `MTP`           | Verifica se o MTP está ativado  |
-| `Shaders`             | Verifica se o usuário deu bypass usando wallhack/holograma                            | 
-| `OBB`        | Verifica se o usuário deu algum tipo de bypass na OBB                               |
-
-
-<sub>
-
-</sub>
+| DetecÃ§Ã£o | DescriÃ§Ã£o |
+|---|---|
+| `App Proxy/Cheat` | Detecta apps conhecidos de proxy como PotatsoLite e ProxyFF |
+| `IPs de VPS/Hosting` | Identifica servidores VPS, Hosting e Proxy por ASN, ISP e rDNS |
+| `ASN de Cheat Proxy` | Cruza ASNs conhecidos como Hostinger (AS47583) e Multacom (AS35916) |
+| `TLD Suspeito` | Detecta domÃ­nios com extensÃµes suspeitas como `.site`, `.store`, `.xyz` |
+| `DomÃ­nio Suspeito` | Identifica palavras-chave no domÃ­nio como `proxy`, `cheat`, `mitm`, `tunnel` |
+| `HTTP Probe` | Verifica se o servidor responde com banners suspeitos como nginx, apache, ubuntu |
+| `Proxy antes do login` | Cruza conexÃµes suspeitas com o timestamp de abertura do Free Fire |
+| `Ãšltimo login Free Fire` | Detecta a Ãºltima inicializaÃ§Ã£o do jogo via `app-measurement.com` |
+| `Apple Store aberta` | Detecta abertura da App Store â€” se apÃ³s a partida, aplique o W.O |
+| `Arquivo antigo` | Alerta se o Ãºltimo registro do relatÃ³rio Ã© de mais de 15 minutos atrÃ¡s |
+| `Uptime curto` | Alerta se o relatÃ³rio cobre menos de 20 minutos de atividade |
+| `ValidaÃ§Ã£o do arquivo` | Verifica se o arquivo Ã© um App Privacy Report legÃ­timo e nÃ£o adulterado |
 
 <img src="https://i.imgur.com/NnWf7Fm.png" alt="line break" width="100%" height="3px">
 
-## Contribuições
+## ContribuiÃ§Ãµes
 
-Contribuições são bem vindas! Por favor me chame no privado do discord `keller22cao`.
+ContribuiÃ§Ãµes sÃ£o bem vindas! Por favor me chame no privado do discord `keller22cao`.
 
-* **🐛 [Reporte um Problema](https://discord.gg/allianceoficial)**: Encontrou um bug? Me avise!
-* **💬 [Faça uma sugestão](https://discord.gg/allianceoficial)**: Tem ideias ou sugestões? Eu adoraria lhe ouvir.
+* **ðŸ› [Reporte um Problema](https://discord.gg/allianceoficial)**: Encontrou um bug? Me avise!
+* **ðŸ’¬ [FaÃ§a uma sugestÃ£o](https://discord.gg/allianceoficial)**: Tem ideias ou sugestÃµes? Eu adoraria lhe ouvir.
+
 <br>
-
 
 ## Agradecimentos
 
-Um grande agradecimento aos membros abaixo por seu trabalho incrível e contribuições sobre bypass:
-
+Um grande agradecimento aos membros abaixo por seu trabalho incrÃ­vel e contribuiÃ§Ãµes:
 
 <div style="text-align:; font-weight: bold; margin-bottom: 10px;">
-  ㅤKellerㅤㅤSheikㅤ ㅤRibeiroㅤㅤㅤPxㅤㅤㅤㅤHgㅤㅤApela
+  ã…¤Kellerã…¤ã…¤Katiauã…¤ Samir
 </div>
 
 <table>
   <tr>
     <td style="text-align: center; margin-right: 20px;">
       <a href="https://www.instagram.com/kellerffx">
-        <img src="https://i.imgur.com/25Qrvbh.png" alt="kellerSS" style="width: 50px; height: 50px;">
+        <img src="https://i.imgur.com/25Qrvbh.png" alt="Keller" style="width: 50px; height: 50px;">
       </a>
     </td>
     <td style="text-align: center; margin-right: 20px;">
       <a href="https://discord.gg/allianceoficial">
-        <img src="https://i.imgur.com/DkHpc3a.jpeg" alt="sheik" style="width: 50px; height: 50px; object-fit: cover;">
-      </a>
-    </td>
-    <td style="text-align: center; margin-right: 20px;">
-      <a href="https://www.instagram.com/Ribeirowxz">
-        <img src="https://i.imgur.com/xqmiMSG.png" alt="ribeiro" style="width: 50px; height: 50px;">
-      </a>
-    </td>
-    <td style="text-align: center;">
-      <a href="https://www.instagram.com/pedrww7_">
-        <img src="https://i.imgur.com/8BUhE5T.jpeg" alt="PX" style="width: 50px; height: 50px;">
-      </a>
-    </td>
-        </td>
-    <td style="text-align: center; margin-right: 20px;">
-      <a href="https://www.instagram.com/_hugomoises">
-        <img src="https://i.imgur.com/8QVfHn2.png" alt="ribeiro" style="width: 50px; height: 50px;">
+        <img src="https://i.imgur.com/e4H6PaP.png" alt="Katiau" style="width: 50px; height: 50px; object-fit: cover;">
       </a>
     </td>
     <td style="text-align: center;">
       <a href="https://discord.gg/allianceoficial">
-        <img src="https://i.imgur.com/Fyk08YR.jpeg" alt="PX" style="width: 50px; height: 50px;">
+        <img src="https://i.imgur.com/OWo75s4.png" alt="Samir" style="width: 50px; height: 50px;">
       </a>
     </td>
   </tr>
 </table>
 
+<img src="https://i.imgur.com/NnWf7Fm.png" alt="line break" width="100%" height="3px">
 
+## ðŸŽ— LicenÃ§a
 
-
-
-
-## 🎗 Licença
-
-Copyright KellerSS © 2025-2030.<br />
+Copyright KellerSS Â© 2025-2030.
 
 <div align="left">
 </div>
